@@ -1,6 +1,5 @@
 exports.handler = (event, context, callback) =>
 {
-
     var twilioSID = 'AC02922f159b411443929c103b0361e48b'
     var twilioAuthToken = 'f2295ba98737f24aedf758233b1c5cae'
 
@@ -21,3 +20,12 @@ exports.handler = (event, context, callback) =>
 
     callback(null, 'sms sent')
 };
+
+
+
+var firebaseClient = require('./FirebaseClient')
+firebaseClient.readData()
+//
+// var t = require('./test');
+// t.ff()
+
