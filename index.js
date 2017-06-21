@@ -1,9 +1,11 @@
-var firebaseClient = require('./FirebaseClient')
+"use strict";
 
+
+var firebaseClient = require('./FirebaseClient')
 
 exports.handler = (event, context, callback) => {
 
-    firebaseClient.readData()
-
-    callback(null, 'sms sent')
+    firebaseClient.readData(callback)
+    callback(null,'completed')
 }
+

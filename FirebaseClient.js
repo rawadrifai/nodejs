@@ -4,12 +4,11 @@
 var firebaseConfig = require('./Config').firebaseConfig;
 var firebase = require("firebase");
 
-function readData() {
+function readData(callback) {
 
     // get today's date
-    var todayDate = new Date().toLocaleDateString()
+    var todayDate = new Date().toLocaleDateString().replace(/\//g,'-');
 
-    // initialize the firebase app
     if(firebase.apps.length == 0) {   // <---Important!!! In lambda, it will cause double initialization.
         firebase.initializeApp(firebaseConfig);
     }
@@ -19,8 +18,12 @@ function readData() {
 
         var reminders = snapshot.val();
 
+        console.log(reminders)
+
         // loop through reminders
         for (var key in reminders) {
+
+            console.log('loop')
 
             if (reminders.hasOwnProperty(key)) {
 
@@ -34,7 +37,17 @@ function readData() {
 
             }
         }
+
+        setTimeout(function() {
+            console.log('about to call callback')
+            callback(null,'process completed');
+            console.log('called callback')
+            }, 3000);
+
     });
+
+
+
 }
 
 module.exports.readData = readData
