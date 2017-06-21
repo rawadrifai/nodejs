@@ -22,7 +22,7 @@ function sendSms(to, message) {
         }
     });
 
-    callback(null, 'sms sent')
+    console.log('sms sent to ' + to)
 }
 
 module.exports.sendSms = sendSms
